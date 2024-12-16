@@ -4,6 +4,7 @@ import Section from "../components/Section";
 import { products, discoutProducts } from "../utils/products";
 import SliderHome from "../components/Slider";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
+import { appBg2, appBg3 } from "../constants";
 
 const Home = () => {
   const newArrivalData = products.filter(
@@ -17,15 +18,15 @@ const Home = () => {
       <Wrapper />
       <Section
         title="Big Discount"
-        bgColor="#f6f9fc"
+        bgColor={appBg3}
         productItems={discoutProducts}
       />
       <Section
         title="New Arrivals"
-        bgColor="white"
+        bgColor={appBg2}
         productItems={newArrivalData}
       />
-      <Section title="Best Sales" bgColor="#f6f9fc" productItems={bestSales} />
+      <Section title="Best Sales" bgColor={appBg3} productItems={bestSales} />
     </Fragment>
   );
 };

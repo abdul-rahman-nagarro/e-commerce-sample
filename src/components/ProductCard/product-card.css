@@ -18,7 +18,7 @@
 }
 
 .product {
-    background: #fff;
+    background: #222324;
     padding: 20px;
     position: relative;
     border-radius: 8px;
@@ -43,7 +43,7 @@
     display: flex;
     justify-content: space-between;
     align-items:center;
-    color: black;
+    color: white;
 }
 
 .price h4 {
@@ -52,10 +52,10 @@
 
 .price button {
     background: none;
-    color: #0f3460;
+    color: #5778c0;
     font-size: 20px;
     transition: 0.5s;
-    border: 1px solid rgb(3 0 71 / 9%);
+    border: 1px solid #4c72c5;
     width: 35px;
     height: 35px;
     border-radius: 5px;

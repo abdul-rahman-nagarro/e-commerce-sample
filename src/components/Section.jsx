@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard/ProductCard";
 const Section = ({ title, bgColor, productItems }) => {
   return (
     <section style={{ background: bgColor }}>
-      <Container>
+      <Container className="text-light">
         <div className="heading">
           <h1>{title}</h1>
         </div>

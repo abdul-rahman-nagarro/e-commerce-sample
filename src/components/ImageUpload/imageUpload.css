@@ -1,0 +1,14 @@
+.image-upload {
+	width: 100%;
+	background: #282828;
+	padding: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.upload-icon {
+	width: 25px;
+	height: 25px;
+}

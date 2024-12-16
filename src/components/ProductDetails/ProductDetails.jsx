@@ -19,7 +19,7 @@ const ProductDetails = ({ selectedProduct }) => {
 
   return (
     <section className="product-page">
-      <Container>
+      <Container className="text-light">
         <Row className="justify-content-center">
           <Col md={6}>
             <img loading="lazy" src={selectedProduct?.imgUrl} alt="" />

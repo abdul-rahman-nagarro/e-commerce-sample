@@ -15,7 +15,7 @@ const SliderHome = () => {
   }
   return (
       <section className='homeSlide'>
-        <Container>
+        <Container className="text-light">
           <Slider {...settings}>
           {SliderData.map((value, index) => {
             return (
