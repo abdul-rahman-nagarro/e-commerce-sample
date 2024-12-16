@@ -10,7 +10,7 @@ const Wrapper = () => {
           <Row>
           {serviceData.map((val, index) => {
             return (
-              <Col md={3} sm={5} xs={9} style={{backgroundColor:val.bg}} className='feature' key={index}>
+              <Col md={3} sm={5} xs={9} style={{backgroundColor: val.bg}} className='feature' key={index}>
                 <div className='icon'>
                   {val.icon}
                 </div>

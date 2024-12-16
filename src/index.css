@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #222324 !important;
   margin: 0;
   font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -70,7 +70,7 @@ button {
 .homeSlide {
   display: flex;
   justify-content: center;
-  background-color: #f6f9fc;
+  background-color: #222324;
   padding-bottom: 0 !important;
 }
 
@@ -101,12 +101,12 @@ button {
 /*   ---Cart Page---   */
 
 .cart-items {
-  background: #f6f9fc;
+  background: #222324;
   height: auto;
 }
 
 .cart-items .cart-total {
-  background-color: white;
+  background-color: #222324;
   padding: 20px;
   height: 150px;
   margin-bottom: 30px;
@@ -114,7 +114,7 @@ button {
 
 .cart-list {
   position: relative;
-  background: white;
+  background: #222324;
   margin-bottom: 30px;
   padding: 20px;
 }
@@ -191,7 +191,7 @@ button {
 }
 
 .desCart {
-  background: #f6f9fc;
+  background: #222324;
 }
 
 .cart-total h4 {

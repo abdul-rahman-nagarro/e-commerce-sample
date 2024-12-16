@@ -6,16 +6,16 @@ const ProductReviews = ({ selectedProduct }) => {
   const [listSelected, setListSelected] = useState("desc");
   return (
     <section className="product-reviews">
-      <Container>
+      <Container className="text-light">
         <ul>
           <li
-            style={{ color: listSelected === "desc" ? "black" : "#9c9b9b" }}
+            style={{ color: listSelected === "desc" ? "white" : "#9c9b9b" }}
             onClick={() => setListSelected("desc")}
           >
             Description
           </li>
           <li
-            style={{ color: listSelected === "rev" ? "black" : "#9c9b9b" }}
+            style={{ color: listSelected === "rev" ? "white" : "#9c9b9b" }}
             onClick={() => setListSelected("rev")}
           >
             Reviews ({selectedProduct?.reviews.length})

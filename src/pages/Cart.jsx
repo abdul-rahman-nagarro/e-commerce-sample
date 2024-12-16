@@ -24,7 +24,7 @@ const Cart = () => {
   }, []);
   return (
     <section className="cart-items">
-      <Container>
+      <Container className="text-light">
         <Row className="justify-content-center">
           <Col md={8}>
             {cartList.length === 0 && (

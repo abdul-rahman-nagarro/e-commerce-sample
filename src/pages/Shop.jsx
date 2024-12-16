@@ -17,7 +17,7 @@ const Shop = () => {
     <Fragment>
       <Banner title="product" />
       <section className="filter-bar">
-        <Container className="filter-bar-contianer">
+        <Container className="filter-bar-contianer text-light">
           <Row className="justify-content-center">
             <Col md={4}>
               <FilterSelect setFilterList={setFilterList} />
@@ -27,7 +27,7 @@ const Shop = () => {
             </Col>
           </Row>
         </Container>
-        <Container>
+        <Container className="text-light">
           <ShopList productItems={filterList} />
         </Container>
       </section>
