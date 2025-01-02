@@ -67,7 +67,17 @@
     color: #fff;
 }
 
-button.add {
+.price button.remove {
+    border: 1px solid #d11a2a;
+    color: #d11a2a;
+}
+
+.price button.remove:hover {
+    background-color: rgba(255, 0, 0, 0.25);
+    color: #fff;
+}
+
+button.action {
     display: flex;
     justify-content: center;
     align-items: center;

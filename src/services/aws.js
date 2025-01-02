@@ -1,4 +1,8 @@
-import AWS from "aws-sdk"
+import {
+	S3Client as AWS_S3Client,
+	ListObjectsCommand,
+	PutObjectCommand,
+} from "@aws-sdk/client-s3"
 import {
 	AWS_ACCESS_KEY_ID,
 	AWS_S3_BUCKET_NAME,
@@ -9,14 +13,14 @@ import {
 const S3_BUCKET = AWS_S3_BUCKET_NAME
 const REGION = AWS_S3_BUCKET_REGION
 
-AWS.config.update({
+const awsAccessCredentials = {
 	accessKeyId: AWS_ACCESS_KEY_ID,
 	secretAccessKey: AWS_SECRET_ACCESS_KEY,
-})
+}
 
-const imageBucket = new AWS.S3({
-	params: { S3_BUCKET: S3_BUCKET },
+const S3Client = new AWS_S3Client({
 	region: REGION,
+	credentials: awsAccessCredentials,
 })
 
 export const uploadImagetoS3 = async (file, progressCb) => {
@@ -29,14 +33,13 @@ export const uploadImagetoS3 = async (file, progressCb) => {
 		Bucket: S3_BUCKET,
 	}
 
-	const data = await imageBucket
-		.putObject(params)
-		.on("httpUploadProgress", (_data) => {
-			console.log("S3 upload progress", _data)
-			const progress = Math.round((_data.loaded / _data.total) * 100)
-			progressCb(progress)
-		})
-		.promise()
+	const putObjectCmd = new PutObjectCommand(params)
+	const data = await await S3Client.send(putObjectCmd)
+	// .on("httpUploadProgress", (_data) => {
+	// 	console.log("S3 upload progress", _data)
+	// 	const progress = Math.round((_data.loaded / _data.total) * 100)
+	// 	progressCb(progress)
+	// })
 	const fileName = encodeURIComponent(file.name)
 	console.log(
 		"S3 uploaded response",
@@ -51,12 +54,12 @@ export const getAllS3Images = async () => {
 		const params = {
 			Bucket: S3_BUCKET,
 		}
-
-		const data = await imageBucket.listObjects(params).promise()
+		const listObjectsCmd = new ListObjectsCommand(params)
+		const data = await S3Client.send(listObjectsCmd)
 		console.log("S3 list objects", data)
 		return data.Contents?.map(
 			(item) => `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${item.Key}`
-		)
+		) || []
 	} catch (error) {
 		console.error("S3 list objects error", error)
 		return []

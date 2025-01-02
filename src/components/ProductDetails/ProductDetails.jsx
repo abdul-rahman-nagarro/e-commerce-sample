@@ -42,7 +42,7 @@ const ProductDetails = ({ selectedProduct }) => {
             </div>
             <p>{selectedProduct?.shortDesc}</p>
             <input
-              className="qty-input"
+              className="qty-input text-light"
               type="number"
               placeholder="Qty"
               value={quantity}

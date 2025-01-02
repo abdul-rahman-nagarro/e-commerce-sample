@@ -1,10 +1,13 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import "./imageUpload.css"
 import { uploadImagetoS3 } from "../../services/aws"
-import { Button, Card, Col, Form, Row } from "react-bootstrap"
+import { Button, Card, Col, Form, Row, Spinner } from "react-bootstrap"
 
-const ImageUpload = () => {
+const ImageUpload = ({ onUploadDone }) => {
 	const [imageFile, setImageFile] = useState()
+	const [isUploading, setIsUploading] = useState(false)
+
+	const imageInputRef = useRef()
 
 	const handleImageSelect = (e) => {
 		const file = e.target.files[0]
@@ -13,36 +16,20 @@ const ImageUpload = () => {
 
 	const handleUploadImage = () => {
 		if (!imageFile) return
-
+		setIsUploading(true)
 		uploadImagetoS3(imageFile, (progress) => {
 			console.log("Progress", progress)
-		}).then((data) => {
-			console.log("Uploaded", data)
 		})
+			.then((data) => {
+				onUploadDone(data)
+				setImageFile(null)
+				imageInputRef.current.value = ""
+			})
+			.finally(() => {
+				setIsUploading(false)
+			})
 	}
 
-	// {/* <div className="text-light">
-	// 	<div className="image-upload">
-	// 		<label htmlFor="file-input">
-	// 			<img
-	// 				className="upload-icon"
-	// 				src="https://img.icons8.com/ios/50/ffffff/upload.png"
-	// 				alt="upload"
-	// 			/>
-	// 		</label>
-	// 		<input
-	// 			id="file-input"
-	// 			type="file"
-	// 			accept="image/*"
-	// 			onChange={handleImageSelect}
-	// 		/>
-	// 		{imageFile && (
-	// 			<button className="btn btn-secondary" onClick={handleUploadImage}>
-	// 				Upload Image
-	// 			</button>
-	// 		)}
-	// 	</div>
-	// </div> */}
 	return (
 		<Row className="mb-4">
 			<Col xs={12} className="d-flex flex-column align-items-center">
@@ -57,15 +44,17 @@ const ImageUpload = () => {
 									// // onChange={handleImageUpload}
 									// style={{ backgroundColor: "#333" }}
 									id="file-input"
+									ref={imageInputRef}
 									type="file"
 									accept="image/*"
 									onChange={handleImageSelect}
 								/>
 							</Form.Group>
 							<div className="text-center">
-								<Button variant="primary" onClick={handleUploadImage}>
+								<Button className="" variant="primary" onClick={handleUploadImage}>
 									{/* <BsCloudUpload className="me-2" /> */}
 									Upload
+									{isUploading && <Spinner className="mx-2" animation="border" size="sm" />}
 								</Button>
 							</div>
 						</Form>

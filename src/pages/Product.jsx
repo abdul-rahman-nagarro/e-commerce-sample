@@ -8,7 +8,6 @@ import ProductDetails from "../components/ProductDetails/ProductDetails"
 import ProductReviews from "../components/ProductReviews/ProductReviews"
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop"
 import { appBg2 } from "../constants"
-import ImageUpload from "../components/ImageUpload/ImageUpload"
 
 const Product = () => {
 	const { id } = useParams()
@@ -35,7 +34,6 @@ const Product = () => {
 	return (
 		<Fragment>
 			<Banner title={selectedProduct?.productName} />
-			<ImageUpload />
 			<ProductDetails selectedProduct={selectedProduct} />
 			<ProductReviews selectedProduct={selectedProduct} />
 			<section className="related-products" style={{ background: appBg2 }}>
